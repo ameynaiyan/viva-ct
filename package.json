@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/ameynaiyan/viva-ct/issues"
   },
-  "homepage": "https://github.com/ameynaiyan/viva-ct#readme"
+  "homepage": "https://github.com/ameynaiyan/viva-ct#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0"
+  }
 }
