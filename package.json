@@ -1,0 +1,19 @@
+{
+  "name": "viva-ct",
+  "version": "1.0.0",
+  "description": "A tiny dynamic animation library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ameynaiyan/viva-ct.git"
+  },
+  "author": "Amey Naiyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ameynaiyan/viva-ct/issues"
+  },
+  "homepage": "https://github.com/ameynaiyan/viva-ct#readme"
+}
