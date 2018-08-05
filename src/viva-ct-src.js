@@ -16,6 +16,16 @@
  		this.el = nodeList.length==undefined?[nodeList]:[...nodeList];
  	}
 
+ 	static get vendorPrefixes() {
+ 		return [
+ 			'-webkit-',
+ 			'-moz-',
+ 			'-ms-',
+ 			'-o-',
+ 			''
+ 		]
+ 	}
+
  	static get animationStart() {
  		return 'webkitAnimationStart mozAnimationStart MSAnimationStart oanimationstart animationstart'
  	}
@@ -76,6 +86,37 @@
  		return 'exit to left'
  	}
 
+ 	static get defaultDuration() {
+ 		return '0.75s'
+ 	}
+
+ 	static get defaultTimingFunction() {
+ 		return 'linear'
+ 	}
+
+ 	static get defaultDelay() {
+ 		return '0s'
+ 	}
+
+ 	static get defaultIterationCount() {
+ 		return 1
+ 	}
+
+ 	static get defaultDirection() {
+ 		return 'normal'
+ 	}
+
+ 	static get defaultConfig() {
+ 		return {
+ 			q: null,
+ 			duration: '0.75s',
+ 			timingFunction: 'linear',
+ 			delay: '0s',
+ 			iterationCount: 1,
+ 			direction: 'normal'
+ 		}
+ 	}
+
  	onStart(callback) {
  		this.el.map(el => el.addEventListener(VivaCT.animationStart, callback));
  	}
@@ -88,7 +129,7 @@
  		this.el.map(el => el.addEventListener(VivaCT.animationIteration, callback));
  	}
 
- 	bounce(query, config) {
+ 	bounce(config = VivaCT.defaultConfig) {
  		switch(query){
  			case VivaCT.enterFromInside: 
  				break;
