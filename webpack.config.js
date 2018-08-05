@@ -1,11 +1,9 @@
 const path = require('path');
 
 module.exports = {
-	entry: {
-		viva-ct: './src/viva-ct-src.js'
-	},
+	entry: './src/viva-ct-src.js',
 	output: {
-		filename: '[name].min.js',
+		filename: 'viva-ct.min.js',
 		path: path.join(__dirname,'dist')
 	},
 	devServer:{
