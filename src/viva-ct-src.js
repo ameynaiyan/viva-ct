@@ -56,6 +56,14 @@
  		return 'enter from left'
  	}
 
+ 	static get enterAlongX() {
+ 		return 'enter along X'
+ 	}
+
+ 	static get enterAlongY() {
+ 		return 'enter along Y'
+ 	}
+
  	static get exit() {
  		return 'exit'
  	}
@@ -82,6 +90,14 @@
 
  	static get exitToLeft() {
  		return 'exit to left'
+ 	}
+
+ 	static get exitAlongX() {
+ 		return 'exit along X'
+ 	}
+
+ 	static get exitAlongY() {
+ 		return 'exit along Y'
  	}
 
  	static get defaultDuration() {
@@ -408,6 +424,44 @@
 			{
 				at: [75],
 				state: ['transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
+ 	jello(config = VivaCT.defaultConfig) {
+		config.keyframes = [
+			{
+				at: [0,11.1,100],
+				state: ['transform: translate3d(0, 0, 0)']
+			},
+			{
+				at: [22.2],
+				state: ['transform: skewX(-12.5deg) skewY(-12.5deg)']
+			},
+			{
+				at: [33.3],
+				state: ['transform: skewX(6.25deg) skewY(6.25deg)']
+			},
+			{
+				at: [44.4],
+				state: ['transform: skewX(-3.125deg) skewY(-3.125deg)']
+			},
+			{
+				at: [55.5],
+				state: ['transform: skewX(1.5625deg) skewY(1.5625deg)']
+			},
+			{
+				at: [66.6],
+				state: ['transform: skewX(-0.78125deg) skewY(-0.78125deg)']
+			},
+			{
+				at: [77.7],
+				state: ['transform: skewX(0.390625deg) skewY(0.390625deg)']
+			},
+			{
+				at: [88.8],
+				state: ['transform: skewX(-0.1953125deg) skewY(-0.1953125deg)']
 			}
 		];
  		this._initAnimation(config);
@@ -825,6 +879,117 @@
  					{
  						at: [90],
  						state:['translate3d(0, -4px, 0)']
+ 					}
+ 				]
+ 				break;
+ 		}
+ 		
+ 		this._initAnimation(config);
+ 	}
+
+ 	flip(config = VivaCT.defaultConfig) {
+ 		switch(config.q){
+ 			case VivaCT.enterAlongX: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0','transform: perspective(400px) rotate3d(1, 0, 0, 90deg)']
+ 					},
+ 					{
+ 						at: [40],
+ 						state:['transform: perspective(400px) rotate3d(1, 0, 0, -20deg)']
+ 					},
+ 					{
+ 						at: [60],
+ 						state:['opacity: 1','transform: perspective(400px) rotate3d(1, 0, 0, 10deg)']
+ 					},
+ 					{
+ 						at: [80],
+ 						state:['transform: perspective(400px) rotate3d(1, 0, 0, -5deg)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: perspective(400px)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterAlongY: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0','transform: perspective(400px) rotate3d(0, 1, 0, 90deg)']
+ 					},
+ 					{
+ 						at: [40],
+ 						state:['transform: perspective(400px) rotate3d(0, 1, 0, -20deg)']
+ 					},
+ 					{
+ 						at: [60],
+ 						state:['opacity: 1','transform: perspective(400px) rotate3d(0, 1, 0, 10deg)']
+ 					},
+ 					{
+ 						at: [80],
+ 						state:['transform: perspective(400px) rotate3d(0, 1, 0, -5deg)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: perspective(400px)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitAlongX:  
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['transform: perspective(400px)']
+ 					},
+ 					{
+ 						at: [30],
+ 						state:['opacity: 1','transform: perspective(400px) rotate3d(1, 0, 0, -20deg)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: perspective(400px) rotate3d(1, 0, 0, 90deg)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitAlongY: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['transform: perspective(400px) rotate3d(0, 1, 0, 90deg)']
+ 					},
+ 					{
+ 						at: [30],
+ 						state:['opacity: 1','transform: perspective(400px) rotate3d(0, 1, 0, -15deg)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: perspective(400px) rotate3d(0, 1, 0, 90deg)']
+ 					}
+ 				]
+ 				break;
+ 			default:
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg)']
+ 					},
+ 					{
+ 						at: [40],
+ 						state:['transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg)']
+ 					},
+ 					{
+ 						at: [50],
+ 						state:['transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg)']
+ 					},
+ 					{
+ 						at: [80],
+ 						state:['transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg)']
  					}
  				]
  				break;
