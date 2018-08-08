@@ -243,7 +243,7 @@
 		 	));
  	}
 
- 	flash(config = VivaCT.defaultConfig) 
+ 	flash(config = VivaCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,50,100],
@@ -257,7 +257,7 @@
  		this._initAnimation(config);
  	}
 
- 	pulse(config = VivaCT.defaultConfig) 
+ 	pulse(config = VivaCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,100],
