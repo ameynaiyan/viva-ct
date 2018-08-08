@@ -58,6 +58,22 @@
  		return 'enter from left'
  	}
 
+ 	static get enterFromLeftClockwise() {
+ 		return 'enter from left clockwise'
+ 	}
+
+ 	static get enterFromLeftAnticlockwise() {
+ 		return 'enter from left anticlockwise'
+ 	}
+
+ 	static get enterFromRightClockwise() {
+ 		return 'enter from right clockwise'
+ 	}
+
+ 	static get enterFromRightAnticlockwise() {
+ 		return 'enter from right anticlockwise'
+ 	}
+
  	static get enterAlongX() {
  		return 'enter along X'
  	}
@@ -100,6 +116,22 @@
 
  	static get exitAlongY() {
  		return 'exit along Y'
+ 	}
+
+ 	static get exitToLeftClockwise() {
+ 		return 'exit to left clockwise'
+ 	}
+
+ 	static get exitToLeftAnticlockwise() {
+ 		return 'exit to left anticlockwise'
+ 	}
+
+ 	static get exitToRightClockwise() {
+ 		return 'exit to right clockwise'
+ 	}
+
+ 	static get exitToRightAnticlockwise() {
+ 		return 'exit to right anticlockwise'
  	}
 
  	static get defaultDuration() {
