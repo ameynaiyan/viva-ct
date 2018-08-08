@@ -335,6 +335,32 @@
  		this._initAnimation(config);
  	}
 
+ 	swing(config = VivaCT.defaultConfig) {
+		config.keyframes = [
+			{
+				at: [20],
+				state: ['transform: rotate3d(0, 0, 1, 15deg)']
+			},
+			{
+				at: [40],
+				state: ['transform: rotate3d(0, 0, 1, -10deg)']
+			},
+			{
+				at: [60],
+				state: ['transform: rotate3d(0, 0, 1, 5deg)']
+			},
+			{
+				at: [80],
+				state: ['transform: rotate3d(0, 0, 1, -5deg)']
+			},
+			{
+				at: [100],
+				state: ['transform: rotate3d(0, 0, 1, 0deg)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
  	pulse(config = VivaCT.defaultConfig) {
 		config.keyframes = [
 			{
