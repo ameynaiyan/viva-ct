@@ -15,7 +15,7 @@
  		let nodeList = document.querySelector(q);
  		this.el = nodeList.length==undefined?[nodeList]:[...nodeList];
  		this.name = '';
- 		this.currentIteration = 0;
+ 		this.events = VivaCT._browserEventCheck();
  	}
 
  	static get vendorPrefixes() {
@@ -26,18 +26,6 @@
  			'-o-',
  			''
  		]
- 	}
-
- 	static get animationStart() {
- 		return 'webkitAnimationStart mozAnimationStart MSAnimationStart oanimationstart animationstart'
- 	}
-
- 	static get animationEnd() {
- 		return 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
- 	}
-
- 	static get animationIteration() {
- 		return 'webkitAnimationIteration mozAnimationIteration MSAnimationIteration oanimationiteration animationiteration'
  	}
 
  	static get enterFromInside() {
@@ -89,11 +77,11 @@
  	}
 
  	static get defaultDuration() {
- 		return '0.75s'
+ 		return '1s'
  	}
 
  	static get defaultTimingFunction() {
- 		return 'linear'
+ 		return 'ease-out'
  	}
 
  	static get defaultDelay() {
@@ -101,7 +89,7 @@
  	}
 
  	static get defaultIterationCount() {
- 		return 1
+ 		return '1'
  	}
 
  	static get defaultDirection() {
@@ -127,6 +115,24 @@
  		}
  	}
 
+ 	static _browserEventCheck() {
+ 		const anims = {
+ 			'animation': ['animationstart','animationiteration','animationend'],
+ 			'webkitAnimation': ['webkitAnimationStart','webkitAnimationIteration','webkitAnimationEnd'],
+ 			'mozAnimation': ['mozAnimationStart','mozAnimationIteration','mozAnimationEnd'],
+ 			'oanimation': ['oanimationstart','oanimationiteration','oanimationend'],
+ 			'MSAnimation': ['animationstart','animationiteration','animationend']
+ 		}
+
+ 		let fd = document.createElement('div');
+
+ 		for(let a in anims){
+	        if( fd.style[a] !== undefined ){
+	            return anims[a];
+	        }
+	    }
+	    return anims['animation'];
+ 	}
 
  	static _generateRandomName() {
  		return 'anim-'+ Math.floor(Math.random() * 1000000000);
@@ -136,44 +142,97 @@
  		return;
  	}
 
- 	static _initAnimation(config){
+ 	_initAnimation(config){
  		this.name = VivaCT._generateRandomName();
- 		this._createKeyframes(config.keyframes);
- 		this._createClass(config.duration, config.timingFunction, config.delay, config.iterationCount, config.direction, config.playState)
  		this._onStart(config.onStart);
  		this._onStep(config.onStep);
- 		this._onEnd(config.onEnd);
+ 		this._onEnd(config.onEnd);	
+ 		this._createClass(config.keyframes, config.duration, config.timingFunction, config.delay, config.iterationCount, config.direction, config.playState);
  	}
 
- 	_createKeyframes(keyframes) {
- 		
- 	}
+ 	_createClass(keyframes, duration = VivaCT.defaultDuration, timing = VivaCT.defaultTimingFunction, delay = VivaCT.defaultDelay, iterationCount = VivaCT.defaultIterationCount, direction = VivaCT.defaultDirection, playState = VivaCT.defaultPlayState) {
+ 		let el = document.createElement('style'), sheet;
+ 		el.setAttribute('id',this.name);
+ 		el.setAttribute('type','text/css');
 
- 	_createClass(duration = VivaCT.defaultDuration, timing = VivaCT.defaultTimingFunction, delay = VivaCT.defaultDelay, iterationCount = VivaCT.defaultIterationCount, direction = VivaCT.defaultDirection, playState = VivaCT.defaultPlayState) {
- 		
+
+ 		let rule = "@keyframes "+this.name+" {";
+ 		keyframes.map(prop => {
+ 			prop.at.map((v,i) => {
+ 				if(i!=0)
+ 					rule+=','
+ 				rule+=(v+'%');
+ 			});
+ 			rule+='{';
+ 			prop.state.map((v,i) => {
+ 				rule+=(v+';');
+ 			});
+ 			rule+='} ';
+ 		})
+ 		rule+='} ';
+
+
+
+ 		rule+= ".c-"+this.name+" {";
+ 		rule+="animation-name: "+this.name+";";
+    	rule+="animation-duration: "+duration+";";
+    	rule+="animation-timing-function: "+timing+";";
+    	rule+="animation-delay: "+delay+";";
+    	rule+="animation-iteration-count: "+iterationCount+";";
+    	rule+="animation-direction: "+direction+";";
+    	rule+="animation-play-state: "+playState+";";
+    	rule+="animation-fill-mode: forwards;";
+    	rule+="}";
+
+    	el.innerHTML = rule;
+
+    	this.el.map(element => element.classList.add("c-"+this.name));
+
+
+ 		document.head.appendChild(el);
  	}
 
  	_clearDom() {
-
+ 		let styleEl = document.getElementById(this.name);
+ 		styleEl.parentNode.removeChild(styleEl);
+ 		this.el.map(el => el.removeEventListener(this.events[0],VivaCT._emptyFn,false));
+ 		this.el.map(el => el.removeEventListener(this.events[1],VivaCT._emptyFn,false));
+ 		this.el.map(el => el.removeEventListener(this.events[2],VivaCT._emptyFn,false));
  	}
 
  	_onStart(callback = VivaCT._emptyFn) {
- 		this.el.map(el => el.addEventListener(VivaCT.animationStart, () => {
- 			callback.call(this);
- 		}).bind(this));
- 	}
-
- 	_onEnd(callback = VivaCT._emptyFn) {
- 		this.el.map(el => el.addEventListener(VivaCT.animationEnd, () => {
- 			callback.call(this);
- 		}).bind(this));
+ 		this.el.map(el => 
+ 			el.addEventListener(this.events[0], 
+ 				(e) => {
+	 				console.log('Animation Started...');
+	 				callback.call(this);
+	 			},
+	 			false
+ 			));
  	}
 
  	_onStep(callback = VivaCT._emptyFn) {
- 		this.el.map(el => el.addEventListener(VivaCT.animationIteration, () => {
- 			this._clearDom();
- 			callback.call(this);
- 		}).bind(this));
+ 		this.el.map(el => 
+ 			el.addEventListener(this.events[1], 
+ 				(e) => {
+		 			console.log('Animation Next Iteration...');
+		 			callback.call(this);
+		 		},
+		 		false
+		 	));
+ 	}
+
+ 	_onEnd(callback = VivaCT._emptyFn) {
+ 		this.el.map(el => 
+ 			el.addEventListener(this.events[2], 
+ 				(e) => {
+		 			console.log('Animation Ended...');
+    				this.el.map(el => el.classList.remove("c-"+this.name));
+		 			this._clearDom();
+		 			callback.call(this);
+		 		},
+		 		false
+		 	));
  	}
 
  	bounce(config = VivaCT.defaultConfig) {
@@ -224,6 +283,8 @@
  				break;
  		}
  		
- 		VivaCT._initAnimation(config);
+ 		this._initAnimation(config);
  	}
  }
+
+ export default VivaCT;
