@@ -257,6 +257,20 @@
  		this._initAnimation(config);
  	}
 
+ 	pulse(config = VivaCT.defaultConfig) 
+		config.keyframes = [
+			{
+				at: [0,100],
+				state: ['transform: scale3d(1, 1, 1)']
+			},
+			{
+				at: [50],
+				state:['transform: scale3d(1.05, 1.05, 1.05)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
  	fade(config = VivaCT.defaultConfig) {
  		switch(config.q){
  			case VivaCT.enter: 
