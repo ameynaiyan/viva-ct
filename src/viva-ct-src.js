@@ -997,6 +997,121 @@
  		
  		this._initAnimation(config);
  	}
+
+ 	slide(config = VivaCT.defaultConfig) {
+ 		switch(config.q){
+ 			case VivaCT.enterFromTop:  
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['visibility: visible;','transform: translate3d(0, -100%, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromRight: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['visibility: visible;','transform: translate3d(100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromBottom:
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['visibility: visible;','transform: translate3d(0, 100%, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromLeft: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['visibility: visible;','transform: translate3d(-100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToTop: 
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['visibility: hidden;','transform: translate3d(0, -100%, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToRight: 
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['visibility: hidden;','transform: translate3d(100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToBottom: 
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['visibility: hidden;','transform: translate3d(0, 100%, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToLeft: 
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['visibility: hidden;','transform: translate3d(-100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			default:
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['visibility: visible;','transform: translate3d(-100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 		}
+ 		
+ 		this._initAnimation(config);
+ 	}
  }
 
  export default VivaCT;
