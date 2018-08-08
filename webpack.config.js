@@ -6,7 +6,7 @@ module.exports = {
 		filename: 'viva-ct.min.js',
 		//filename: 'viva-ct.js',
 		path: path.join(__dirname,'dist'),
-		library:'VivaCT',
+		library:'VCT',
 		libraryExport:['default']
 	},
 	devServer:{

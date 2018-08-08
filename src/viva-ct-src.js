@@ -2,7 +2,7 @@
  *
  *	viva-ct.js
  *
- *	Version: 1.0.0
+ *	Version: 1.1.0
  *	Author: Amey Naiyan
  *	Licensed under the MIT license - http://opensource.org/licenses/MIT
  *	
@@ -12,12 +12,12 @@
  *
  */
 
- class VivaCT {
+ class VCT {
  	constructor(q) {
- 		let nodeList = document.querySelector(q);
+ 		let nodeList = document.querySelectorAll(q);
  		this.el = nodeList.length==undefined?[nodeList]:[...nodeList];
  		this.name = '';
- 		this.events = VivaCT._browserEventCheck();
+ 		this.events = VCT._browserEventCheck();
  	}
 
  	static get vendorPrefixes() {
@@ -161,15 +161,15 @@
  	static get defaultConfig() {
  		return {
  			q: null,
- 			duration: VivaCT.defaultDuration,
- 			timingFunction: VivaCT.defaultTimingFunction,
- 			delay: VivaCT.defaultDelay,
- 			iterationCount: VivaCT.iterationCount,
- 			direction: VivaCT.direction,
+ 			duration: VCT.defaultDuration,
+ 			timingFunction: VCT.defaultTimingFunction,
+ 			delay: VCT.defaultDelay,
+ 			iterationCount: VCT.iterationCount,
+ 			direction: VCT.direction,
  			keyframes: [],
- 			onStart: VivaCT._emptyFn,
- 			onEnd: VivaCT._emptyFn,
- 			onStep: VivaCT._emptyFn
+ 			onStart: VCT._emptyFn,
+ 			onEnd: VCT._emptyFn,
+ 			onStep: VCT._emptyFn
  		}
  	}
 
@@ -201,14 +201,14 @@
  	}
 
  	_initAnimation(config){
- 		this.name = VivaCT._generateRandomName();
+ 		this.name = VCT._generateRandomName();
  		this._onStart(config.onStart);
  		this._onStep(config.onStep);
  		this._onEnd(config.onEnd);	
  		this._createClass(config.keyframes, config.duration, config.timingFunction, config.delay, config.iterationCount, config.direction, config.playState);
  	}
 
- 	_createClass(keyframes, duration = VivaCT.defaultDuration, timing = VivaCT.defaultTimingFunction, delay = VivaCT.defaultDelay, iterationCount = VivaCT.defaultIterationCount, direction = VivaCT.defaultDirection, playState = VivaCT.defaultPlayState) {
+ 	_createClass(keyframes, duration = VCT.defaultDuration, timing = VCT.defaultTimingFunction, delay = VCT.defaultDelay, iterationCount = VCT.defaultIterationCount, direction = VCT.defaultDirection, playState = VCT.defaultPlayState) {
  		let el = document.createElement('style'), sheet;
  		el.setAttribute('id',this.name);
  		el.setAttribute('type','text/css');
@@ -253,12 +253,12 @@
  	_clearDom() {
  		let styleEl = document.getElementById(this.name);
  		styleEl.parentNode.removeChild(styleEl);
- 		this.el.map(el => el.removeEventListener(this.events[0],VivaCT._emptyFn,false));
- 		this.el.map(el => el.removeEventListener(this.events[1],VivaCT._emptyFn,false));
- 		this.el.map(el => el.removeEventListener(this.events[2],VivaCT._emptyFn,false));
+ 		this.el.map(el => el.removeEventListener(this.events[0],VCT._emptyFn,false));
+ 		this.el.map(el => el.removeEventListener(this.events[1],VCT._emptyFn,false));
+ 		this.el.map(el => el.removeEventListener(this.events[2],VCT._emptyFn,false));
  	}
 
- 	_onStart(callback = VivaCT._emptyFn) {
+ 	_onStart(callback = VCT._emptyFn) {
  		this.el.map(el => 
  			el.addEventListener(this.events[0], 
  				(e) => {
@@ -269,7 +269,7 @@
  			));
  	}
 
- 	_onStep(callback = VivaCT._emptyFn) {
+ 	_onStep(callback = VCT._emptyFn) {
  		this.el.map(el => 
  			el.addEventListener(this.events[1], 
  				(e) => {
@@ -280,7 +280,7 @@
 		 	));
  	}
 
- 	_onEnd(callback = VivaCT._emptyFn) {
+ 	_onEnd(callback = VCT._emptyFn) {
  		this.el.map(el => 
  			el.addEventListener(this.events[2], 
  				(e) => {
@@ -293,7 +293,7 @@
 		 	));
  	}
 
- 	flash(config = VivaCT.defaultConfig) {
+ 	flash(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,50,100],
@@ -307,7 +307,7 @@
  		this._initAnimation(config);
  	}
 
- 	rubberBand(config = VivaCT.defaultConfig) {
+ 	rubberBand(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0],
@@ -341,7 +341,7 @@
  		this._initAnimation(config);
  	}
 
- 	shake(config = VivaCT.defaultConfig) {
+ 	shake(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,100],
@@ -359,7 +359,7 @@
  		this._initAnimation(config);
  	}
 
- 	headShake(config = VivaCT.defaultConfig) {
+ 	headShake(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,50],
@@ -385,7 +385,7 @@
  		this._initAnimation(config);
  	}
 
- 	swing(config = VivaCT.defaultConfig) {
+ 	swing(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [20],
@@ -411,7 +411,7 @@
  		this._initAnimation(config);
  	}
 
- 	tada(config = VivaCT.defaultConfig) {
+ 	tada(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,100],
@@ -433,7 +433,7 @@
  		this._initAnimation(config);
  	}
 
- 	wobble(config = VivaCT.defaultConfig) {
+ 	wobble(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,100],
@@ -463,7 +463,7 @@
  		this._initAnimation(config);
  	}
 
- 	jello(config = VivaCT.defaultConfig) {
+ 	jello(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,11.1,100],
@@ -501,7 +501,7 @@
  		this._initAnimation(config);
  	}
 
- 	pulse(config = VivaCT.defaultConfig) {
+ 	pulse(config = VCT.defaultConfig) {
 		config.keyframes = [
 			{
 				at: [0,100],
@@ -515,9 +515,9 @@
  		this._initAnimation(config);
  	}
 
- 	fade(config = VivaCT.defaultConfig) {
+ 	fade(config = VCT.defaultConfig) {
  		switch(config.q){
- 			case VivaCT.enter: 
+ 			case VCT.enter: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -529,7 +529,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromTop: 
+ 			case VCT.enterFromTop: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -541,7 +541,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromRight: 
+ 			case VCT.enterFromRight: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -553,7 +553,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromBottom:
+ 			case VCT.enterFromBottom:
  				config.keyframes = [
  					{
  						at: [0],
@@ -565,7 +565,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromLeft: 
+ 			case VCT.enterFromLeft: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -577,7 +577,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exit: 
+ 			case VCT.exit: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -589,7 +589,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToTop: 
+ 			case VCT.exitToTop: 
  				config.keyframes = [
  					{
  						at: [100],
@@ -601,7 +601,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToRight: 
+ 			case VCT.exitToRight: 
  				config.keyframes = [
  					{
  						at: [100],
@@ -613,7 +613,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToBottom: 
+ 			case VCT.exitToBottom: 
  				config.keyframes = [
  					{
  						at: [100],
@@ -625,7 +625,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToLeft:  
+ 			case VCT.exitToLeft:  
  				config.keyframes = [
  					{
  						at: [100],
@@ -654,9 +654,9 @@
  		this._initAnimation(config);
  	}
 
- 	bounce(config = VivaCT.defaultConfig) {
+ 	bounce(config = VCT.defaultConfig) {
  		switch(config.q){
- 			case VivaCT.enterFromInside: 
+ 			case VCT.enterFromInside: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -684,7 +684,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromOutside: 
+ 			case VCT.enterFromOutside: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -712,7 +712,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromTop:  
+ 			case VCT.enterFromTop:  
  				config.keyframes = [
  					{
  						at: [0],
@@ -736,7 +736,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromRight: 
+ 			case VCT.enterFromRight: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -760,7 +760,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromBottom:
+ 			case VCT.enterFromBottom:
  				config.keyframes = [
  					{
  						at: [0],
@@ -784,7 +784,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromLeft: 
+ 			case VCT.enterFromLeft: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -808,7 +808,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToInside: 
+ 			case VCT.exitToInside: 
  				config.keyframes = [
  					{
  						at: [20],
@@ -824,7 +824,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToOutside: 
+ 			case VCT.exitToOutside: 
  				config.keyframes = [
  					{
  						at: [20],
@@ -840,7 +840,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToTop: 
+ 			case VCT.exitToTop: 
  				config.keyframes = [
  					{
  						at: [20],
@@ -856,7 +856,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToRight: 
+ 			case VCT.exitToRight: 
  				config.keyframes = [
  					{
  						at: [20],
@@ -868,7 +868,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToBottom: 
+ 			case VCT.exitToBottom: 
  				config.keyframes = [
  					{
  						at: [20],
@@ -884,7 +884,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToLeft: 
+ 			case VCT.exitToLeft: 
  				config.keyframes = [
  					{
  						at: [20],
@@ -923,9 +923,9 @@
 
 
 
- 	zoom(config = VivaCT.defaultConfig) {
+ 	zoom(config = VCT.defaultConfig) {
  		switch(config.q){
- 			case VivaCT.enterFromInside: 
+ 			case VCT.enterFromInside: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -941,7 +941,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromOutside: 
+ 			case VCT.enterFromOutside: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -953,7 +953,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromTop:  
+ 			case VCT.enterFromTop:  
  				config.keyframes = [
  					{
  						at: [0],
@@ -965,7 +965,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromRight: 
+ 			case VCT.enterFromRight: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -977,7 +977,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromBottom:  
+ 			case VCT.enterFromBottom:  
  				config.keyframes = [
  					{
  						at: [0],
@@ -989,7 +989,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromLeft: 
+ 			case VCT.enterFromLeft: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1001,7 +1001,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToInside: 
+ 			case VCT.exitToInside: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1017,7 +1017,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToOutside: 
+ 			case VCT.exitToOutside: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1033,7 +1033,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToTop: 
+ 			case VCT.exitToTop: 
  				config.keyframes = [
  					{
  						at: [40],
@@ -1045,7 +1045,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToRight: 
+ 			case VCT.exitToRight: 
  				config.keyframes = [
  					{
  						at: [40],
@@ -1057,7 +1057,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToBottom: 
+ 			case VCT.exitToBottom: 
  				config.keyframes = [
  					{
  						at: [40],
@@ -1069,7 +1069,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToLeft:
+ 			case VCT.exitToLeft:
  				config.keyframes = [
  					{
  						at: [40],
@@ -1106,9 +1106,9 @@
  		this._initAnimation(config);
  	}
 
- 	flip(config = VivaCT.defaultConfig) {
+ 	flip(config = VCT.defaultConfig) {
  		switch(config.q){
- 			case VivaCT.enterAlongX: 
+ 			case VCT.enterAlongX: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1132,7 +1132,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterAlongY: 
+ 			case VCT.enterAlongY: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1156,7 +1156,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitAlongX:  
+ 			case VCT.exitAlongX:  
  				config.keyframes = [
  					{
  						at: [0],
@@ -1172,7 +1172,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitAlongY: 
+ 			case VCT.exitAlongY: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1217,9 +1217,9 @@
  		this._initAnimation(config);
  	}
 
- 	slide(config = VivaCT.defaultConfig) {
+ 	slide(config = VCT.defaultConfig) {
  		switch(config.q){
- 			case VivaCT.enterFromTop:  
+ 			case VCT.enterFromTop:  
  				config.keyframes = [
  					{
  						at: [0],
@@ -1231,7 +1231,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromRight: 
+ 			case VCT.enterFromRight: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1243,7 +1243,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromBottom:
+ 			case VCT.enterFromBottom:
  				config.keyframes = [
  					{
  						at: [0],
@@ -1255,7 +1255,7 @@
  					}
  				]
  				break;
- 			case VivaCT.enterFromLeft: 
+ 			case VCT.enterFromLeft: 
  				config.keyframes = [
  					{
  						at: [0],
@@ -1267,7 +1267,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToTop: 
+ 			case VCT.exitToTop: 
  				config.keyframes = [
  					{
  						at: [100],
@@ -1279,7 +1279,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToRight: 
+ 			case VCT.exitToRight: 
  				config.keyframes = [
  					{
  						at: [100],
@@ -1291,7 +1291,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToBottom: 
+ 			case VCT.exitToBottom: 
  				config.keyframes = [
  					{
  						at: [100],
@@ -1303,7 +1303,7 @@
  					}
  				]
  				break;
- 			case VivaCT.exitToLeft: 
+ 			case VCT.exitToLeft: 
  				config.keyframes = [
  					{
  						at: [100],
@@ -1333,4 +1333,4 @@
  	}
  }
 
- export default VivaCT;
+ export default VCT;
