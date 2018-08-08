@@ -257,6 +257,40 @@
  		this._initAnimation(config);
  	}
 
+ 	rubberBand(config = VivaCT.defaultConfig) {
+		config.keyframes = [
+			{
+				at: [0],
+				state: ['transform: scale3d(1, 1, 1)']
+			},
+			{
+				at: [30],
+				state: ['transform: scale3d(1.25, 0.75, 1)']
+			},
+			{
+				at: [40],
+				state: ['transform: scale3d(0.75, 1.25, 1)']
+			},
+			{
+				at: [50],
+				state: ['transform: scale3d(1.15, 0.85, 1)']
+			},
+			{
+				at: [65],
+				state: ['transform: scale3d(0.95, 1.05, 1)']
+			},
+			{
+				at: [75],
+				state: ['transform: scale3d(1.05, 0.95, 1)']
+			},
+			{
+				at: [100],
+				state: ['transform: scale3d(1, 1, 1)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
  	pulse(config = VivaCT.defaultConfig) {
 		config.keyframes = [
 			{
