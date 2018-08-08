@@ -28,6 +28,10 @@
  		]
  	}
 
+ 	static get enter() {
+ 		return 'enter'
+ 	}
+
  	static get enterFromInside() {
  		return 'enter from inside'
  	}
@@ -50,6 +54,10 @@
 
  	static get enterFromLeft() {
  		return 'enter from left'
+ 	}
+
+ 	static get exit() {
+ 		return 'exit'
  	}
 
  	static get exitToInside() {
@@ -233,6 +241,145 @@
 		 		},
 		 		false
 		 	));
+ 	}
+
+ 	fade(config = VivaCT.defaultConfig) {
+ 		switch(config.q){
+ 			case VivaCT.enter: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 1']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromTop: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0','transform: translate3d(0, -100%, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromRight: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0','transform: translate3d(100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromBottom:
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0','transform: translate3d(0, 100%, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromLeft: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0','transform: translate3d(-100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exit: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 1']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToTop: 
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: translate3d(0, -100%, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToRight: 
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: translate3d(100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToBottom: 
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: translate3d(0, 100%, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToLeft:  
+ 				config.keyframes = [
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: translate3d(-100%, 0, 0)']
+ 					},
+ 					{
+ 						at: [0],
+ 						state:['opacity: 1','transform: translate3d(0, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			default:
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 1']
+ 					}
+ 				]
+ 				break;
+ 		}
+ 		
+ 		this._initAnimation(config);
  	}
 
  	bounce(config = VivaCT.defaultConfig) {
