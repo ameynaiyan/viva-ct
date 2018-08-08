@@ -291,6 +291,50 @@
  		this._initAnimation(config);
  	}
 
+ 	shake(config = VivaCT.defaultConfig) {
+		config.keyframes = [
+			{
+				at: [0,100],
+				state: ['transform: translate3d(0, 0, 0)']
+			},
+			{
+				at: [10,30,50,70,90],
+				state: ['transform: translate3d(-10px, 0, 0)']
+			},
+			{
+				at: [20,40,60,80],
+				state: ['transform: translate3d(10px, 0, 0)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
+ 	headShake(config = VivaCT.defaultConfig) {
+		config.keyframes = [
+			{
+				at: [0,50],
+				state: ['transform: translateX(0)']
+			},
+			{
+				at: [6.5],
+				state: ['transform: translateX(-6px) rotateY(-9deg)']
+			},
+			{
+				at: [18.5],
+				state: ['transform: translateX(5px) rotateY(7deg)']
+			},
+			{
+				at: [31.5],
+				state: ['transform: translateX(-3px) rotateY(-5deg)']
+			},
+			{
+				at: [43.5],
+				state: ['transform: translateX(2px) rotateY(3deg)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
  	pulse(config = VivaCT.defaultConfig) {
 		config.keyframes = [
 			{
