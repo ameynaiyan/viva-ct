@@ -361,6 +361,58 @@
  		this._initAnimation(config);
  	}
 
+ 	tada(config = VivaCT.defaultConfig) {
+		config.keyframes = [
+			{
+				at: [0,100],
+				state: ['transform: scale3d(1, 1, 1)']
+			},
+			{
+				at: [10,20],
+				state: ['transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg)']
+			},
+			{
+				at: [30,50,70,90],
+				state: ['transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg)']
+			},
+			{
+				at: [40,60,80],
+				state: ['transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
+ 	wobble(config = VivaCT.defaultConfig) {
+		config.keyframes = [
+			{
+				at: [0,100],
+				state: ['transform: translate3d(0, 0, 0)']
+			},
+			{
+				at: [15],
+				state: ['transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg)']
+			},
+			{
+				at: [30],
+				state: ['transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg)']
+			},
+			{
+				at: [45],
+				state: ['transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg)']
+			},
+			{
+				at: [60],
+				state: ['transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg)']
+			},
+			{
+				at: [75],
+				state: ['transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg)']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
  	pulse(config = VivaCT.defaultConfig) {
 		config.keyframes = [
 			{
