@@ -8,6 +8,8 @@
  *	
  *	A tiny dynamic animation library
  *
+ *  Animation Keyframe data imported from Animate.css by Daniel Eden - https://github.com/daneden/animate.css
+ *
  */
 
  class VivaCT {
@@ -859,6 +861,191 @@
  					{
  						at: [100],
  						state:['opacity: 0','transform: translate3d(-2000px, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			default:
+ 				config.keyframes = [
+ 					{
+ 						at: [0,20,53,80,100],
+ 						state:['transform: translate3d(0, 0, 0)']
+ 					},
+ 					{
+ 						at: [40,43],
+ 						state:['transform: translate3d(0, -30px, 0)']
+ 					},
+ 					{
+ 						at: [70],
+ 						state:['transform: translate3d(0, -15px, 0)']
+ 					},
+ 					{
+ 						at: [90],
+ 						state:['translate3d(0, -4px, 0)']
+ 					}
+ 				]
+ 				break;
+ 		}
+ 		
+ 		this._initAnimation(config);
+ 	}
+
+
+
+ 	zoom(config = VivaCT.defaultConfig) {
+ 		switch(config.q){
+ 			case VivaCT.enterFromInside: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0;','transform: scale3d(0.3, 0.3, 0.3)']
+ 					},
+ 					{
+ 						at: [50],
+ 						state:['opacity: 1;']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['transform: scale3d(1, 1, 1)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromOutside: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0;','transform: scale3d(2.5, 2.5, 2.5)']
+ 					},
+ 					{
+ 						at: [50],
+ 						state:['opacity: 1;']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromTop:  
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0;','transform: scale3d(0.3, 0.3, 0.3)','transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0)']
+ 					},
+ 					{
+ 						at: [60],
+ 						state:['opacity: 1;','transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromRight: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0;','transform: scale3d(0.3, 0.3, 0.3)','transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0)']
+ 					},
+ 					{
+ 						at: [60],
+ 						state:['opacity: 1;','transform: scale3d(0.475, 0.475, 0.475) translate3d(-60px, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromBottom:  
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0;','transform: scale3d(0.3, 0.3, 0.3)','transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0)']
+ 					},
+ 					{
+ 						at: [60],
+ 						state:['opacity: 1;','transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.enterFromLeft: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 0;','transform: scale3d(0.3, 0.3, 0.3)','transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0)']
+ 					},
+ 					{
+ 						at: [60],
+ 						state:['opacity: 1;','transform: scale3d(0.475, 0.475, 0.475) translate3d(60px, 0, 0)']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToInside: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 1']
+ 					},
+ 					{
+ 						at: [50],
+ 						state:['opacity: 0','transform: scale3d(0.3, 0.3, 0.3)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToOutside: 
+ 				config.keyframes = [
+ 					{
+ 						at: [0],
+ 						state:['opacity: 1']
+ 					},
+ 					{
+ 						at: [50],
+ 						state:['opacity: 0','transform: scale3d(2.5, 2.5, 2.5)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToTop: 
+ 				config.keyframes = [
+ 					{
+ 						at: [40],
+ 						state:['opacity: 1','transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0)','transform-origin: center bottom']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToRight: 
+ 				config.keyframes = [
+ 					{
+ 						at: [40],
+ 						state:['opacity: 1','transform: scale3d(0.475, 0.475, 0.475) translate3d(-42, 0, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: scale3d(0.1, 0.1, 0.1) translate3d(2000px, 0, 0)','transform-origin: center bottom']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToBottom: 
+ 				config.keyframes = [
+ 					{
+ 						at: [40],
+ 						state:['opacity: 1','transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0)','transform-origin: center bottom']
+ 					}
+ 				]
+ 				break;
+ 			case VivaCT.exitToLeft:
+ 				config.keyframes = [
+ 					{
+ 						at: [40],
+ 						state:['opacity: 1','transform: scale3d(0.475, 0.475, 0.475) translate3d(42, 0, 0)']
+ 					},
+ 					{
+ 						at: [100],
+ 						state:['opacity: 0','transform: scale3d(0.1, 0.1, 0.1) translate3d(-2000px, 0, 0)','transform-origin: center bottom']
  					}
  				]
  				break;
