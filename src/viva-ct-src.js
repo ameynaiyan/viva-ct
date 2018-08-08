@@ -243,6 +243,20 @@
 		 	));
  	}
 
+ 	flash(config = VivaCT.defaultConfig) 
+		config.keyframes = [
+			{
+				at: [0,50,100],
+				state: ['opacity: 1']
+			},
+			{
+				at: [25,75],
+				state:['opacity: 0']
+			}
+		];
+ 		this._initAnimation(config);
+ 	}
+
  	fade(config = VivaCT.defaultConfig) {
  		switch(config.q){
  			case VivaCT.enter: 
