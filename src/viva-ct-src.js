@@ -18,6 +18,7 @@
  		this.el = nodeList.length==undefined?[nodeList]:[...nodeList];
  		this.name = '';
  		this.events = VCT._browserEventCheck();
+ 		this.handlers = [];
  	}
 
  	static get vendorPrefixes() {
@@ -202,9 +203,9 @@
 
  	_initAnimation(config){
  		this.name = VCT._generateRandomName();
- 		this._onStart(config.onStart);
- 		this._onStep(config.onStep);
- 		this._onEnd(config.onEnd);	
+ 		this._onStart(config);
+ 		this._onStep(config);
+ 		this._onEnd(config);	
  		this._createClass(config.keyframes, config.duration, config.timingFunction, config.delay, config.iterationCount, config.direction, config.playState);
  	}
 
@@ -250,46 +251,49 @@
  		document.head.appendChild(el);
  	}
 
- 	_clearDom() {
+ 	_clearDom(e) {
  		let styleEl = document.getElementById(this.name);
- 		styleEl.parentNode.removeChild(styleEl);
- 		this.el.map(el => el.removeEventListener(this.events[0],VCT._emptyFn,false));
- 		this.el.map(el => el.removeEventListener(this.events[1],VCT._emptyFn,false));
- 		this.el.map(el => el.removeEventListener(this.events[2],VCT._emptyFn,false));
+ 		if(styleEl)
+ 			styleEl.parentNode.removeChild(styleEl);
  	}
 
- 	_onStart(callback = VCT._emptyFn) {
+ 	_onStart(config = VCT.defaultConfig) {
+ 		let me = this;
+ 		if(!config.onStart)
+ 			config.onStart = VCT._emptyFn;
  		this.el.map(el => 
- 			el.addEventListener(this.events[0], 
- 				(e) => {
+ 			el.addEventListener(me.events[0], 
+ 				function _handler(e) {  
 	 				console.log('Animation Started...');
-	 				callback.call(this);
-	 			},
-	 			false
+	 				el.removeEventListener(me.events[0],_handler);
+	 				config.onStart.call(this);
+	 			}
  			));
  	}
 
- 	_onStep(callback = VCT._emptyFn) {
+ 	_onStep(config = VCT.defaultConfig) {
+ 		let me = this;
+ 		if(!config.onStep)
+ 			config.onStep = VCT._emptyFn;
  		this.el.map(el => 
- 			el.addEventListener(this.events[1], 
- 				(e) => {
-		 			console.log('Animation Next Iteration...');
-		 			callback.call(this);
-		 		},
-		 		false
-		 	));
+ 			el.addEventListener(me.events[1],config.onStep));
  	}
 
- 	_onEnd(callback = VCT._emptyFn) {
+ 	_onEnd(config = VCT.defaultConfig) {
+ 		let me = this;
+ 		let ev = me.events[2];
+ 		if(!config.onEnd)
+ 			config.onEnd = VCT._emptyFn;
  		this.el.map(el => 
- 			el.addEventListener(this.events[2], 
- 				(e) => {
+ 			el.addEventListener(me.events[2], 
+ 				function _handler(e) {
 		 			console.log('Animation Ended...');
-    				this.el.map(el => el.classList.remove("c-"+this.name));
-		 			this._clearDom();
-		 			callback.call(this);
-		 		},
-		 		false
+    				el.classList.remove("c-"+me.name);
+    				el.removeEventListener(me.events[1],config.onStep);
+    				el.removeEventListener(me.events[2],_handler);
+		 			me._clearDom(e);
+		 			config.onEnd.call(this);
+		 		}
 		 	));
  	}
 
@@ -1329,6 +1333,10 @@
  				break;
  		}
  		
+ 		this._initAnimation(config);
+ 	}
+
+ 	custom(config = VCT.defaultConfig) {
  		this._initAnimation(config);
  	}
  }
