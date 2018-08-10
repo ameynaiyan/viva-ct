@@ -2,7 +2,7 @@
  *
  *	viva-ct.js
  *
- *	Version: 1.1.0
+ *	Version: 1.0.0
  *	Author: Amey Naiyan
  *	Licensed under the MIT license - http://opensource.org/licenses/MIT
  *	
