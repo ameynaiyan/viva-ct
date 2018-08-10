@@ -10,7 +10,17 @@ The ready to use animation data was imported from Animate.css library by Daniel 
 
 ### Installation
 
-Include dist/viva-ct.js or dist/viva-ct.min.js as part of your application
+#### Via NPM
+
+```sh
+npm i viva-ct
+```
+
+Include 
+	- dist/viva-ct.js 
+	or 
+	- dist/viva-ct.min.js 
+as part of your application
 
 
 ### Creating a new Object
