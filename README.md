@@ -2,8 +2,11 @@
 --------
 [1]: <https://github.com/ameynaiyan/viva-ct>
 
+<<<<<<< HEAD
 Version 1.0.0
 
+=======
+>>>>>>> da41c17793c5d1cd19c1fd5e95f216029522e848
 vivaCT is a tiny dynamic animation library built for easy generation of animation on webpages.
 
 The ready to use animation data was imported from Animate.css library by Daniel Eden - https://daneden.github.io/animate.css/
@@ -104,4 +107,8 @@ obj.custom({
 		}
 	]
 });
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> da41c17793c5d1cd19c1fd5e95f216029522e848
