@@ -76,15 +76,15 @@ state | A set of css properties representing the state of the animated object at
 let obj = new VCT('#obj');
 
 obj.fade({
-  q: 'enter from left',
+	q: 'enter from left',
 	duration: '1s',	
-  timingFunction: 'ease-in-out'
+	timingFunction: 'ease-in-out'
 });
 
 obj.jello();
 
 obj.pulse({
-  iterationCount: 5,
+  	iterationCount: 5,
 	onStep: function(){
 		console.log('pulse!')
 	}
